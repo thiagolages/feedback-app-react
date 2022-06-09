@@ -5,6 +5,7 @@ import { Widget } from "./components/Widget";
 export function App() { // removing 'default' so we can't import it with other names by mistake
 
   return (<Widget/>)
+  // return (<WidgetWithNoAccessibility/>)
 
   // next return was used to train a few concepts
   // return (
