@@ -17,24 +17,27 @@ export function App() { // removing 'default' so we can't import it with other n
   // )
 }
 
-
 interface ButtonProps{
   text?: string;// question mark (?) shows that this is optional
 }
 
+/* notes
+  *To show a JS  variable inside HTML,  use {}
+  *For a default value of a property, use '??'
+  *use of 'className' instead of 'class' because it's a reserved word
+  *classes inside 'className' are from tailwind
+  *'p-1' indicates a padding of 1*(0.25*rem). 'rem' is a relative measurement
+  *1 rem  = 16px (default font size)
+  *0.25rem= 4px (minimum distance used by tailwind)
+  *so 'p-1' = 0.25rem = 4px, 'p-2' = 0.5rem = 8px, and so on..
+  *h-10 -> height = 10*0.25rem = 10*4px = 40px
+  *rounded -> rounded borders
+  *
+  *to include custom colors, use [], e.g.: bg-[#8257e6], instead of bg-violet-500
+*/
+
 function Button (props: ButtonProps){
-    // To show a JS  variable inside HTML,  use {}
-    // For a default value of a property, use '??'
-    // use of 'className' instead of 'class' because it's a reserved word
-    // classes inside 'className' are from tailwind
-    // 'p-1' indicates a padding of 1*(0.25*rem). 'rem' is a relative measurement
-    // 1 rem  = 16px (default font size)
-    // 0.25rem= 4px (minimum distance used by tailwind)
-    // so 'p-1' = 0.25rem = 4px, 'p-2' = 0.5rem = 8px, and so on..
-    // h-10 -> height = 10*0.25rem = 10*4px = 40px
-    // rounded -> rounded borders
-    
-    // to include custom colors, use [], e.g.: bg-[#8257e6], instead of bg-violet-500
+
     return (
     <div>
       {/* the following button style was created using tailwind properties directly */}
@@ -50,6 +53,3 @@ function Button (props: ButtonProps){
     </div>
     )
 }
-
-
-

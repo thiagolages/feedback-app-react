@@ -1,6 +1,6 @@
 import { ChatTeardropDots } from 'phosphor-react'; // for icons
 import { Popover } from '@headlessui/react';
-import { WidgetForm } from './WidgetForm';
+import { WidgetForm } from './WidgetForm'; // automatically imports the folder's 'index' file
 
 // Figma URL: https://www.figma.com/file/PG2VUwAZb4QeZ14jVDKRLB/Feedback-Widget?node-id=10%3A1637
 
@@ -31,7 +31,6 @@ export function Widget(){
 
             <Popover.Button className='bg-brand-500 rounded-full px-3 h-16 text-white flex items-center group'>
                 <ChatTeardropDots className="w-10 h-10"/>
-
                 <span className='max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 ease-linear'>
                     Feedback
                 </span>
