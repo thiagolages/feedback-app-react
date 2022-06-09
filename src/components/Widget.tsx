@@ -1,5 +1,8 @@
 import { ChatTeardropDots } from 'phosphor-react'; // for icons
 import { Popover } from '@headlessui/react';
+import { WidgetForm } from './WidgetForm';
+
+// Figma URL: https://www.figma.com/file/PG2VUwAZb4QeZ14jVDKRLB/Feedback-Widget?node-id=10%3A1637
 
 // In this Component, we added the Popover component from the HeadlessUI library (made by Tailwind devs)
 // to improve our application in terms of Accessibility
@@ -17,9 +20,14 @@ export function Widget(){
 
     
     return (
-        <Popover className='absolute bottom-5 right-5'>
+        // flex-col: we want the header, content, and the footer to be on top of each other, not side by side
+        // items-end: items aligned to the right (end)
+        // md:bottom-8 md:right-8: for medium (md) sized screen, keep bottom and right distances at 8*0.25rem
+        <Popover className='absolute bottom-4 right-4 md:bottom-8 md:right-8 flex flex-col items-end'>
             
-            <Popover.Panel>Hello World</Popover.Panel>
+            <Popover.Panel>
+                <WidgetForm/>
+            </Popover.Panel>
 
             <Popover.Button className='bg-brand-500 rounded-full px-3 h-16 text-white flex items-center group'>
                 <ChatTeardropDots className="w-10 h-10"/>
