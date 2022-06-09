@@ -7,6 +7,7 @@ import { ScreenshotButton } from "../ScreenshotButton";
 interface FeedbackContentStepProps{
     feedbackType: FeedbackType;
     onFeedbackRestartRequest: () => void;
+    onFeedbackSend: () => void;
 }
 
 export function FeedbackContentStep(props: FeedbackContentStepProps) {
@@ -20,11 +21,7 @@ export function FeedbackContentStep(props: FeedbackContentStepProps) {
     function handleSubmitFeedback(event:FormEvent){
 
         event.preventDefault(); // prevent the default behaviour of refreshing the page when submitting the form
-
-        console.log({
-            screenshot,
-            comment
-        });
+        props.onFeedbackSend();
     }
 
     return (

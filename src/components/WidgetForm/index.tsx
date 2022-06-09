@@ -8,6 +8,7 @@ import thoughtImageUrl from '../../assets/thought.png';
 import { CloseButton } from "../CloseButton";
 import { FeedbackTypeStep } from "./Steps/FeedbackTypeStep";
 import { FeedbackContentStep } from "./Steps/FeedbackContentStep";
+import { FeedbackSuccessStep } from "./Steps/FeedbackSuccessStep";
 
 /*  notes about properties used in WidgetForm
     * ***** used in first div *****
@@ -102,8 +103,10 @@ export function WidgetForm(){
     
     // we're telling the script that feedbackType can be either "BUG", "IDEA", "OTHER" or null
     const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null); // will store the user's chosen feeback type
+    const [feedbackSent, setFeedbackSent ] = useState (false);
 
     function handleRestartFeedback(){
+        setFeedbackSent(false);
         setFeedbackType(null);
     }
 
@@ -113,14 +116,23 @@ export function WidgetForm(){
             {/* since the header will be different for each option, we're moving it to FeedbackTypeStep */}
 
             {/* content */}
-            {!feedbackType ? (
-                <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType}/>
-            ) : (
-                <FeedbackContentStep 
-                    feedbackType={feedbackType}
-                    onFeedbackRestartRequest={handleRestartFeedback}
+            { feedbackSent ? 
+                <FeedbackSuccessStep
+                    onFeedbackRestartRequest={() => handleRestartFeedback()}
                 />
-            ) }
+                :
+               <>
+                    {!feedbackType ? (
+                        <FeedbackTypeStep onFeedbackTypeChanged={setFeedbackType}/>
+                    ) : (
+                        <FeedbackContentStep 
+                            feedbackType={feedbackType}
+                            onFeedbackRestartRequest={handleRestartFeedback}
+                            onFeedbackSend={ () => setFeedbackSent(true) }
+                        />
+                    ) }
+               </>
+            }
             {/* end of content */}
 
             <footer className="text-xs text-neutral-400">
