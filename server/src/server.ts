@@ -1,20 +1,14 @@
 import express from 'express';
-import { allowedNodeEnvironmentFlags } from 'process';
+import { routes } from './routes';
 
 const app = express();
 
-app.get('/users', (req, res) => {
-
-    return res.send('Hello World\n');
-
-})
+// Next line NEEDS to be before the definition of routes !
+// tells express to check for JSON inside the request body
+app.use(express.json());
+app.use(routes);
 
 // app will listen on port 3333 and will run arrow function when server is up
 app.listen(3333, () => {
-
     console.log("HTTP server running !");
 });
-
-// why we're using SQLite
-// doesnt need to install anything up front
-// we'll be using Prisma
