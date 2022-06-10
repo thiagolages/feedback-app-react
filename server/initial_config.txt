@@ -6,3 +6,9 @@ npm install @prisma/client          // necessary when we are running our backend
 npx prisma init                     // initialize prisma config vars, migrations, DB
 npm install nodemailer              // to send emails
 npm install @types/nodemailer -D    // so that nodemailer understand Typescript types
+npm install jest -D                 // for unit testing
+npx jest --init                     // initialize jest
+npm install ts-node -D                    // to use jest with Typescript
+npm install -D jest @swc/jest             // SWC is a really fast compiler for Typescript. Will be used so that jest understands JS compiled from TS code
+npm install @types/jest -D                // types in jest
+npm install cores

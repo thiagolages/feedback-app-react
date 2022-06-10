@@ -4,6 +4,7 @@
 // Maybe, during development, we need to receive something else other than the data contained
 // in 'FeedbackCreateData'. So we are redefining it here
 
+import { MailAdapter } from "../adapters/mail-adapter";
 import { FeedbacksRepository } from "../repositories/feedbacks-repository";
 
 interface SubmitFeedbackUseCaseRequest{
@@ -15,20 +16,46 @@ interface SubmitFeedbackUseCaseRequest{
 export class SubmitFeedbackUseCase {
 
     private feedbacksRepository: FeedbacksRepository;
+    private mailAdapter: MailAdapter;
+
     constructor(
         feedbacksRepository: FeedbacksRepository,
+        mailAdapter: MailAdapter,
     ){
-        this.feedbacksRepository = feedbacksRepository;
+        this.feedbacksRepository= feedbacksRepository;
+        this.mailAdapter        = mailAdapter;
     }
 
     async execute(request: SubmitFeedbackUseCaseRequest){// could be 'handle', 'run', etc
         const { type, comment, screenshot }  = request;
 
-        this.feedbacksRepository.create({
+        if (!type){
+            throw new Error('Type is required.');
+        }
+        
+        if (!comment){
+            throw new Error('Comment is required.');
+        }
+
+        if (screenshot && ! screenshot.startsWith('data:image/png;base64')){
+            throw new Error('Invalid screenshot format.')
+        }
+
+        await this.feedbacksRepository.create({
             type,
             comment,
             screenshot
         })
+
+        await this.mailAdapter.sendMail({
+            subject: "New feedback",
+            body:[
+                `<div style="font-family: sans-serif; font-size: 16px; color: #111;">`,
+                `<p>Tipo do feedback: ${type}</p>`,
+                `<p>Comentário: ${comment}</p>`,
+                `</div>`,
+            ].join('\n'),
+        });
     }
 }
 
