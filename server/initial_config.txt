@@ -1,0 +1,7 @@
+npx tsc init                    // initialize what's necessary to use Typescript
+npm install express             // will help with routes inside our application. each rout will execute some action inside our application
+npm install -D @types/express   // express by default doesnt support Typescript types, so we need to install this library
+npm install -D prisma           // will help with database communication. Instead of writing raw SQL code, we'll use prisma syntax and it will later convert to SQL. Works with
+// SQLite, PostgresSQL, MySQL, SQL Server, MongoDB, and there's no need to change any code if you change your DB.
+npm install @prisma/client      // necessary when we are running our backend
+npx prisma init                 // initialize prisma config vars

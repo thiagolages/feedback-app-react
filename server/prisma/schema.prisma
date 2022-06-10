@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // default values
+  // provider = "postgresql"
+  // url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Feedback {
+
+
+  // prisma will convert String for ex for the internal variable used by the actual DB, like 'VarChar' for example
+  // prisma needs at least one primary key, indicated by '@id'
+  // we coudl use the following:
+  //    id Int @id @default(autoincrement())
+  // but creating simple IDs like 1, 2, 3, 4 is not recommended because it's easy to infer other people's feedback
+  // and if we're not careful, someone can have access to them. So we used uuid(), that creates an unique ID each time we call it
+  id String @id @default(uuid())
+
+  // field_name: type_of_data
+  type       String
+  comment    String
+  screenshot String? // ? represents an optional field
+
+
+  @@map("feedbacks")
+}
+
+// to actually create the table above, we have to go to the terminal and type:
+// npx prisma migrate {dev | deploy}
+
+// to visualize the db:
+// npx prisma studio
