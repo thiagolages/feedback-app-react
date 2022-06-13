@@ -102,7 +102,7 @@ export type FeedbackType = keyof typeof feedbackTypes;
 export function WidgetForm(){
     
     // we're telling the script that feedbackType can be either "BUG", "IDEA", "OTHER" or null
-    const [feedbackType, setFeedbackType] = useState<FeedbackType | null>(null); // will store the user's chosen feeback type
+    const [feedbackType, setFeedbackType ] = useState<FeedbackType | null>(null); // will store the user's chosen feeback type
     const [feedbackSent, setFeedbackSent ] = useState (false);
 
     function handleRestartFeedback(){

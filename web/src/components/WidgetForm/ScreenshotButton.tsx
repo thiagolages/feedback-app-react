@@ -1,16 +1,19 @@
 import html2canvas from "html2canvas";
 import { Camera, Trash } from "phosphor-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Loading } from "../Loading";
 
 interface ScreenShotButtonProps{
     screenshot: string | null;
     onScreenShotTake: (screenshot: string | null) => void;
+    isTakingScreenshot: boolean;
+    setIsTakingScreenshot: React.Dispatch<React.SetStateAction<boolean>> ;
+
 }
                    // instead of props: ScreenShotButtonProps
-export function ScreenshotButton({ screenshot, onScreenShotTake }: ScreenShotButtonProps){
+export function ScreenshotButton({ screenshot, onScreenShotTake, isTakingScreenshot, setIsTakingScreenshot }: ScreenShotButtonProps){
 
-    const [isTakingScreenshot, setIsTakingScreenshot] = useState(false); // to show loading image while the screenshot is being taken
+    // const [isTakingScreenshot, setIsTakingScreenshot] = useState(false); // to show loading image while the screenshot is being taken
 
     async function handleTakeScreenshot(){
         setIsTakingScreenshot(true);
