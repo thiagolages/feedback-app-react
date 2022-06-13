@@ -1,5 +1,7 @@
+Notes on which commands were made, which packages were installed, etc.
+
 npx tsc init                        // initialize what's necessary to use Typescript
-npm install express                 // will help with routes inside our application. each rout will execute some action inside our application
+npm install express                 // will help with routes inside our application. each route will execute some action inside our application
 npm install -D @types/express       // express by default doesnt support Typescript types, so we need to install this library
 npm install -D prisma               // will help with database communication. Instead of writing raw SQL code, we'll use prisma syntax and it will later convert to SQL. Works with SQLite, PostgresSQL, MySQL, SQL Server, MongoDB, and there's no need to change any code if you change your DB.
 npm install @prisma/client          // necessary when we are running our backend
@@ -8,7 +10,8 @@ npm install nodemailer              // to send emails
 npm install @types/nodemailer -D    // so that nodemailer understand Typescript types
 npm install jest -D                 // for unit testing
 npx jest --init                     // initialize jest
-npm install ts-node -D                    // to use jest with Typescript
-npm install -D jest @swc/jest             // SWC is a really fast compiler for Typescript. Will be used so that jest understands JS compiled from TS code
-npm install @types/jest -D                // types in jest
-npm install cores
+npm install ts-node -D              // to use jest with Typescript
+npm install -D jest @swc/jest       // SWC is a really fast compiler for Typescript. Will be used so that jest understands JS compiled from TS code
+npm install @types/jest -D          // types in jest
+npm install cores                   // tells which front-end addresses can consume our backend
+npm install @types/cors -D          // types for cors
